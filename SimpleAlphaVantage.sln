@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAlphaVantage", "SimpleAlphaVantage\SimpleAlphaVantage.csproj", "{008CFD24-9CAE-46CA-90EF-2F5F889D81F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{008CFD24-9CAE-46CA-90EF-2F5F889D81F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{008CFD24-9CAE-46CA-90EF-2F5F889D81F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{008CFD24-9CAE-46CA-90EF-2F5F889D81F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{008CFD24-9CAE-46CA-90EF-2F5F889D81F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECD42F18-C308-45FB-A771-6803434802D5}
+	EndGlobalSection
+EndGlobal
