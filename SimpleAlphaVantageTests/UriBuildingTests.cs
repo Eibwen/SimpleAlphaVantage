@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using SimpleAlphaVantage;
 using SimpleAlphaVantage.Utilities;
 
 namespace SimpleAlphaVantageTests
@@ -51,6 +53,43 @@ namespace SimpleAlphaVantageTests
             //Assert
             mockHandler.RequestUri.Should().Be("http://test.test.test");
             response.Result.Should().Contain("two", JToken.FromObject("four"));
+        }
+
+        [Test]
+        public void When_appending_further_parameters()
+        {
+            //Arrange
+            var mockResponse = new HttpResponseMessage();
+            mockResponse.Content = new StringContent("{'two': 'six'}");
+
+            var mockHandler = new MockHttpHandler(mockResponse);
+            var httpClient = new HttpClient(mockHandler);
+
+            var client = new GenericApiClient(httpClient);
+
+            //Act
+            var response = client.SendAsync<JObject>(HttpMethod.Get, new Uri("http://test.test.test?already=here&more=there"), new Dictionary<string, string>
+            {
+                {"and", "plus"},
+                {"even", "more"}
+            });
+
+            //Assert
+            mockHandler.RequestUri.Should().Be("http://test.test.test?already=here&more=there&and=plus&even=more");
+            response.Result.Should().Contain("two", JToken.FromObject("six"));
+        }
+
+        [Test]
+        public void When_string_interpolation_of_enum_should_get_text()
+        {
+            //Arrange
+            var dataType = DataFormat.json;
+
+            //Act
+            var urlString = $"https://whatever/query?datatype={dataType}";
+
+            //Assert
+            urlString.Should().Be("https://whatever/query?datatype=json");
         }
 
         public class TestRequest : IRequestParams

@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Greg Walker</Authors>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Eibwen/SimpleAlphaVantage</RepositoryUrl>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="RequestParameterModels\" />
-    <Folder Include="ResponseModels\" />
   </ItemGroup>
 
 </Project>

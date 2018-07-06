@@ -12,10 +12,17 @@ namespace SimpleAlphaVantage.Utilities
     {
         private readonly HttpClient _client = new HttpClient();
 
-        public GenericApiClient(Action<HttpClient> confgiureClient = null)
+        public GenericApiClient(Action<HttpClient> confgiureClient = null, bool strictDeserialization = true)
         {
             confgiureClient?.Invoke(_client);
+
+            JsonSettings = new JsonSerializerSettings
+            {
+                MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore
+            };
         }
+
+        protected JsonSerializerSettings JsonSettings { get; set; }
 
         internal GenericApiClient(HttpClient client)
         {
@@ -26,6 +33,11 @@ namespace SimpleAlphaVantage.Utilities
             where TRequestParams : IRequestParams
         {
             return await SendAsync<TRequestParams, TResponse>(HttpMethod.Get, requestUri, parameters);
+        }
+
+        public async Task<TResponse> SendGetAsync<TResponse>(Uri requestUri, Dictionary<string, string> parameters)
+        {
+            return await SendAsync<TResponse>(HttpMethod.Get, requestUri, parameters);
         }
 
         public async Task<TResponse> SendAsync<TRequestParams, TResponse>(HttpMethod method, Uri requestUri, TRequestParams parameters)
