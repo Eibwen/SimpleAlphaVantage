@@ -9,7 +9,7 @@ namespace SimpleAlphaVantage.ResponseModels
     public class TimeSeriesIntraday
     {
         [JsonProperty("Meta Data")]
-        public object Metadata { get; set; }
+        public SparseMetadata Metadata { get; set; }
 
         [UsedImplicitly]
         [JsonMultiNameProperty("Time Series (1min)")]

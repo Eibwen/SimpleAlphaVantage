@@ -7,7 +7,7 @@ namespace SimpleAlphaVantage.ResponseModels
     public class TimeSeriesWeekly
     {
         [JsonProperty("Meta Data")]
-        public object Metadata { get; set; }
+        public SparseMetadata Metadata { get; set; }
 
         [JsonProperty("Weekly Time Series")]
         public Dictionary<DateTime, TimeSeriesData> Data { get; set; }

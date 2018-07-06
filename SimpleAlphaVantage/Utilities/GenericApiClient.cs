@@ -17,11 +17,13 @@ namespace SimpleAlphaVantage.Utilities
         {
             confgiureClient?.Invoke(_client);
 
+            //TODO well this makes this NOT generic... have this passed in, and for my library inherid from generic one
             JsonSettings = new JsonSerializerSettings
             {
                 MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore,
                 ContractResolver = new AlphaVantageContractResolver()
             };
+            JsonSettings.Converters.Add(new MetadataJsonConverter());
         }
 
         protected JsonSerializerSettings JsonSettings { get; set; }
@@ -58,7 +60,7 @@ namespace SimpleAlphaVantage.Utilities
             var res = await _client.SendAsync(req);
             res.EnsureSuccessStatusCode();
 
-            return JsonConvert.DeserializeObject<TResponse>(await res.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<TResponse>(await res.Content.ReadAsStringAsync(), JsonSettings);
         }
 
         private Uri AppendParams(Uri original, string toAppend)
