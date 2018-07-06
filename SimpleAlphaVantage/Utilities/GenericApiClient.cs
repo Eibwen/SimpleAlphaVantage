@@ -17,6 +17,11 @@ namespace SimpleAlphaVantage.Utilities
             confgiureClient(_client);
         }
 
+        internal GenericApiClient(HttpClient client)
+        {
+            _client = client;
+        }
+
         public async Task<TResponse> SendGetAsync<TRequestParams, TResponse>(Uri requestUri, TRequestParams parameters)
             where TRequestParams : IRequestParams
         {
@@ -30,7 +35,7 @@ namespace SimpleAlphaVantage.Utilities
             var paramsString = string.Join("&", dictParams.Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
             var fullUri = AppendParams(requestUri, paramsString);
 
-            var req = new HttpRequestMessage(method, requestUri);
+            var req = new HttpRequestMessage(method, fullUri);
 
             var res = await _client.SendAsync(req);
             res.EnsureSuccessStatusCode();
