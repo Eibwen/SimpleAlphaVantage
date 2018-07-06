@@ -1,6 +1,6 @@
 ﻿namespace SimpleAlphaVantage.ResponseModels
 {
-    public class BatchStockQuotes
+    public class BatchStockQuotes : BaseResposeData<BatchQuote>
     {
         
     }

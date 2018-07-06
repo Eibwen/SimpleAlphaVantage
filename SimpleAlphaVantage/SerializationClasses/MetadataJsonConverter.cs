@@ -21,7 +21,6 @@ namespace SimpleAlphaVantage.SerializationClasses
 
             if (reader.TokenType == JsonToken.StartObject)
             {
-                //reader.Read();
                 var jObject = JObject.Load(reader);
 
                 foreach (var prop in jObject)
@@ -37,7 +36,7 @@ namespace SimpleAlphaVantage.SerializationClasses
                             existingValue.Symbol = prop.Value.ToObject<string>();
                             break;
                         case "Last Refreshed":
-                            existingValue.LastRefreshed = prop.Value.ToObject<DateTime>();
+                            existingValue.LastRefreshed = prop.Value.ToObject<DateTime>(serializer);
                             break;
                         case "Interval":
                             existingValue.Interval = prop.Value.ToObject<string>();

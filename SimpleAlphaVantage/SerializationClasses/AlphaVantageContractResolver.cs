@@ -7,6 +7,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace SimpleAlphaVantage.SerializationClasses
 {
+    [Obsolete("Went with custom JsonConverter for both the root object and Metadata instead", true)]
     public class AlphaVantageContractResolver : DefaultContractResolver
     {
         public AlphaVantageContractResolver()
@@ -39,6 +40,7 @@ namespace SimpleAlphaVantage.SerializationClasses
         }
     }
 
+    [Obsolete("Went with custom JsonConverter for both the root object and Metadata instead", true)]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true)]
     public class JsonMultiNamePropertyAttribute : Attribute
     {

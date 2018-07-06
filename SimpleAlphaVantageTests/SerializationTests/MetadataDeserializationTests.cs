@@ -15,7 +15,7 @@ namespace SimpleAlphaVantageTests.SerializationTests
         {
             //Arrange
             var responseJson = @"{""Meta Data"":{""1. Information"":""Intraday (15min) prices and volumes"",""2. Symbol"":""MSFT"",""3. Last Refreshed"":""2018-07-06 16:00:00"",""4. Interval"":""15min"",""5. Output Size"":""Compact"",""6. Time Zone"":""US/Eastern""},""Time Series (15min)"":{""2018-07-06 16:00:00"":{""1. open"":""100.9850"",""2. high"":""101.2500"",""3. low"":""100.7100"",""4. close"":""101.1600"",""5. volume"":""4248932""},""2018-07-06 15:45:00"":{""1. open"":""101.4050"",""2. high"":""101.4300"",""3. low"":""101.0400"",""4. close"":""101.0400"",""5. volume"":""570066""},""2018-07-06 15:30:00"":{""1. open"":""101.2200"",""2. high"":""101.4200"",""3. low"":""101.2000"",""4. close"":""101.4000"",""5. volume"":""441079""}}}";
-            var client = new TestGenericApiClient();
+            var client = new GenericApiClient();
 
             //Act
             var materialized = client.DeserializeWithSettings<TimeSeriesIntraday>(responseJson);
@@ -30,15 +30,6 @@ namespace SimpleAlphaVantageTests.SerializationTests
             materialized.Metadata.OutputSize.Should().Be("Compact");
             materialized.Metadata.TimeZone.Should().Be("US/Eastern");
             materialized.Metadata.Notes.Should().BeNull();
-        }
-
-        private class TestGenericApiClient : GenericApiClient
-        {
-            //TODO why not have this sort of method in the actual class???
-            public T DeserializeWithSettings<T>(string json)
-            {
-                return JsonConvert.DeserializeObject<T>(json, JsonSettings);
-            }
         }
     }
 }

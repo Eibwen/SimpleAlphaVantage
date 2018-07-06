@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SimpleAlphaVantage.ResponseModels;
 using SimpleAlphaVantage.SerializationClasses;
 
 namespace SimpleAlphaVantage.Utilities
@@ -20,10 +21,11 @@ namespace SimpleAlphaVantage.Utilities
             //TODO well this makes this NOT generic... have this passed in, and for my library inherid from generic one
             JsonSettings = new JsonSerializerSettings
             {
-                MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore,
-                ContractResolver = new AlphaVantageContractResolver()
+                MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore
             };
             JsonSettings.Converters.Add(new MetadataJsonConverter());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<TimeSeriesData>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<AdjustedTimeSeriesData>());
         }
 
         protected JsonSerializerSettings JsonSettings { get; set; }
@@ -60,7 +62,12 @@ namespace SimpleAlphaVantage.Utilities
             var res = await _client.SendAsync(req);
             res.EnsureSuccessStatusCode();
 
-            return JsonConvert.DeserializeObject<TResponse>(await res.Content.ReadAsStringAsync(), JsonSettings);
+            return DeserializeWithSettings<TResponse>(await res.Content.ReadAsStringAsync());
+        }
+
+        internal T DeserializeWithSettings<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json, JsonSettings);
         }
 
         private Uri AppendParams(Uri original, string toAppend)
