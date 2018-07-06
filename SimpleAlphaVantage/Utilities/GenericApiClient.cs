@@ -12,9 +12,9 @@ namespace SimpleAlphaVantage.Utilities
     {
         private readonly HttpClient _client = new HttpClient();
 
-        public GenericApiClient(Action<HttpClient> confgiureClient)
+        public GenericApiClient(Action<HttpClient> confgiureClient = null)
         {
-            confgiureClient(_client);
+            confgiureClient?.Invoke(_client);
         }
 
         internal GenericApiClient(HttpClient client)
@@ -31,8 +31,12 @@ namespace SimpleAlphaVantage.Utilities
         public async Task<TResponse> SendAsync<TRequestParams, TResponse>(HttpMethod method, Uri requestUri, TRequestParams parameters)
             where TRequestParams : IRequestParams
         {
-            var dictParams = parameters.ToDictionary();
-            var paramsString = string.Join("&", dictParams.Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
+            return await SendAsync<TResponse>(method, requestUri, parameters.ToDictionary());
+        }
+
+        public async Task<TResponse> SendAsync<TResponse>(HttpMethod method, Uri requestUri, Dictionary<string, string> parameters)
+        {
+            var paramsString = string.Join("&", parameters.Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
             var fullUri = AppendParams(requestUri, paramsString);
 
             var req = new HttpRequestMessage(method, fullUri);

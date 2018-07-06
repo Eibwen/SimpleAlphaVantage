@@ -33,6 +33,26 @@ namespace SimpleAlphaVantageTests
             response.Result.Should().Contain("two", JToken.FromObject("four"));
         }
 
+        [Test]
+        public void When_supplied_with_empty_dictionary()
+        {
+            //Arrange
+            var mockResponse = new HttpResponseMessage();
+            mockResponse.Content = new StringContent("{'two': 'four'}");
+
+            var mockHandler = new MockHttpHandler(mockResponse);
+            var httpClient = new HttpClient(mockHandler);
+
+            var client = new GenericApiClient(httpClient);
+
+            //Act
+            var response = client.SendAsync<JObject>(HttpMethod.Get, new Uri("http://test.test.test"), new Dictionary<string,string>());
+
+            //Assert
+            mockHandler.RequestUri.Should().Be("http://test.test.test");
+            response.Result.Should().Contain("two", JToken.FromObject("four"));
+        }
+
         public class TestRequest : IRequestParams
         {
             public Dictionary<string, string> ToDictionary()
