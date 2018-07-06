@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAlphaVantage", "SimpleAlphaVantage\SimpleAlphaVantage.csproj", "{008CFD24-9CAE-46CA-90EF-2F5F889D81F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleAlphaVantage", "SimpleAlphaVantage\SimpleAlphaVantage.csproj", "{008CFD24-9CAE-46CA-90EF-2F5F889D81F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAlphaVantageTests", "SimpleAlphaVantageTests\SimpleAlphaVantageTests.csproj", "{723F1097-AD8D-4D8B-BA2B-A33B43DA425B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleAlphaVantageTests", "SimpleAlphaVantageTests\SimpleAlphaVantageTests.csproj", "{723F1097-AD8D-4D8B-BA2B-A33B43DA425B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0FB2D73D-9358-4485-AAD5-BB6D8B8BDF73}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
