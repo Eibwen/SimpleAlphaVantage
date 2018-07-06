@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SimpleAlphaVantage.SerializationClasses;
 
 namespace SimpleAlphaVantage.Utilities
 {
@@ -18,7 +19,8 @@ namespace SimpleAlphaVantage.Utilities
 
             JsonSettings = new JsonSerializerSettings
             {
-                MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore
+                MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore,
+                ContractResolver = new AlphaVantageContractResolver()
             };
         }
 
