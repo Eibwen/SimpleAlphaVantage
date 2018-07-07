@@ -15,4 +15,14 @@
     <ProjectReference Include="..\SimpleAlphaVantage\SimpleAlphaVantage.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ResponseTests\TestData\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ResponseTests\TestData\sector.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
