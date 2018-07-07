@@ -87,9 +87,7 @@ public string GenerateFunction(KeyValuePair<string, List<Parameter>> kvp)
 
 	return $@"        public async Task<{returnObject}> {functionName}({string.Join(", ", functionParameters)})
         {{
-			var function = ApiFunction.{kvp.Key};
-
-            return await ApiClient.SendGetAsync<{returnObject}>(BuildUri(function), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<{returnObject}>(BuildUri(ApiFunction.{kvp.Key}), new Dictionary<string, string>
             {{
                 {string.Join(",\r\n                ", parameterCollectionInitializer)}
             }});
