@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+// ReSharper disable InconsistentNaming
 
 namespace SimpleAlphaVantage.ResponseModels
 {
@@ -12,11 +13,10 @@ namespace SimpleAlphaVantage.ResponseModels
         [JsonProperty("1a. price")]
         public decimal Price { get; set; }
         [JsonProperty("1b. price (USD)")]
-        // ReSharper disable once InconsistentNaming
         public decimal PriceUSD { get; set; }
         [JsonProperty("2. volume")]
         public decimal Volume { get; set; }
         [JsonProperty("3. market cap (USD)")]
-        public decimal MarketCap { get; set; }
+        public decimal MarketCapUSD { get; set; }
     }
 }

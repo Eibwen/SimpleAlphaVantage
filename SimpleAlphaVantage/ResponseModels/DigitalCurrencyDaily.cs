@@ -4,8 +4,4 @@
     {
         
     }
-
-    public class DigitalCurrencyFullData
-    {
-    }
 }

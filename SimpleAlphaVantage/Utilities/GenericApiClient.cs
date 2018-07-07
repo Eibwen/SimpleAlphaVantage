@@ -28,6 +28,7 @@ namespace SimpleAlphaVantage.Utilities
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<TimeSeriesData>());
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<AdjustedTimeSeriesData>());
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<DigitalCurrencySpotData>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<DigitalCurrencyFullData>());
             JsonSettings.Converters.Add(new ParenthesesCurrencyPropertyJsonConverter());
         }
 

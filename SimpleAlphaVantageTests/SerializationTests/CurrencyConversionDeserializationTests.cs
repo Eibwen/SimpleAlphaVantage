@@ -27,21 +27,21 @@ namespace SimpleAlphaVantageTests.SerializationTests
                     Price = 5614.25205722m,
                     PriceUSD = 6598.71423375m,
                     Volume = 12054.88574590m,
-                    MarketCap = 79546746.15772399m
+                    MarketCapUSD = 79546746.15772399m
                 },
                 new DigitalCurrencySpotData
                 {
                     Price = 5607.13276119M,
                     PriceUSD = 6590.34656526M,
                     Volume = 12039.62198342M,
-                    MarketCap = 79345281.38542400M
+                    MarketCapUSD = 79345281.38542400M
                 },
                 new DigitalCurrencySpotData
                 {
                     Price = 5609.58382787M,
                     PriceUSD = 6593.22742783M,
                     Volume = 12045.28001062M,
-                    MarketCap = 79417270.54190400M
+                    MarketCapUSD = 79417270.54190400M
                 });
         }
     }
