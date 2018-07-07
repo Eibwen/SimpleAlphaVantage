@@ -24,8 +24,11 @@ namespace SimpleAlphaVantage.Utilities
                 MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore
             };
             JsonSettings.Converters.Add(new MetadataJsonConverter());
+            //TODO do some sort of scan to find all of these:
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<TimeSeriesData>());
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<AdjustedTimeSeriesData>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<DigitalCurrencySpotData>());
+            JsonSettings.Converters.Add(new ParenthesesCurrencyPropertyJsonConverter());
         }
 
         protected JsonSerializerSettings JsonSettings { get; set; }

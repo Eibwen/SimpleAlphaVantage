@@ -7,6 +7,7 @@ namespace SimpleAlphaVantage.SerializationClasses
 {
     public class MetadataJsonConverter : JsonConverter<SparseMetadata>
     {
+        public override bool CanWrite => false;
         public override void WriteJson(JsonWriter writer, SparseMetadata value, JsonSerializer serializer)
         {
             throw new NotImplementedException("TODO find a way to not include this converter for serialization");
@@ -49,6 +50,18 @@ namespace SimpleAlphaVantage.SerializationClasses
                             break;
                         case "Notes":
                             existingValue.Notes = prop.Value.ToObject<string>();
+                            break;
+                        case "Digital Currency Code":
+                            existingValue.DigitalCurrencyCode = prop.Value.ToObject<string>();
+                            break;
+                        case "Digital Currency Name":
+                            existingValue.DigitalCurrencyName = prop.Value.ToObject<string>();
+                            break;
+                        case "Market Code":
+                            existingValue.MarketCode = prop.Value.ToObject<string>();
+                            break;
+                        case "Market Name":
+                            existingValue.MarketName = prop.Value.ToObject<string>();
                             break;
                         default:
                             throw new Exception($"Unknown property in meta data!: '{prop}'");

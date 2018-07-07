@@ -8,6 +8,8 @@ namespace SimpleAlphaVantage.SerializationClasses
 {
     public class BaseResposeDataJsonConverter<T> : JsonConverter<BaseResposeData<T>>
     {
+        public override bool CanWrite => false;
+
         public override void WriteJson(JsonWriter writer, BaseResposeData<T> value, JsonSerializer serializer)
         {
             throw new NotImplementedException();

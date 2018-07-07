@@ -14,5 +14,10 @@ namespace SimpleAlphaVantage.ResponseModels
         public string OutputSize { get; set; }
         public string Notes { get; set; }
         public string TimeZone { get; set; }
+
+        public string DigitalCurrencyCode { get; set; }
+        public string DigitalCurrencyName { get; set; }
+        public string MarketCode { get; set; }
+        public string MarketName { get; set; }
     }
 }
