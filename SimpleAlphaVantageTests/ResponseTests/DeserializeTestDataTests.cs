@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
+using FluentAssertions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using SimpleAlphaVantage;
 using SimpleAlphaVantage.ResponseModels;
@@ -87,7 +88,11 @@ namespace SimpleAlphaVantageTests.ResponseTests
                 var result = client.DeserializeWithSettings(sampleFileContent, returnType);
 
                 //Assert
-                //TODO add some assertions here, count all the non-default property values somehow?
+                // count all the non-default property values, if deserialization failed, the values should be defaults
+                var nonDefaultProperties = CountNonDefaultProperties(result);
+                Console.WriteLine("Non-default property count: " + nonDefaultProperties);
+
+                nonDefaultProperties.Should().BeGreaterOrEqualTo(GetMinimumExpectedProperties(function));
             }
 
             if (id == 0)
@@ -96,18 +101,58 @@ namespace SimpleAlphaVantageTests.ResponseTests
             }
         }
 
-        //public static IEnumerable<TestCaseData> GetDeserializationData()
-        //{
+        private int GetMinimumExpectedProperties(ApiFunction function)
+        {
+            switch (function)
+            {
+                case ApiFunction.CURRENCY_EXCHANGE_RATE:
+                    return 5;
+                case ApiFunction.SECTOR:
+                    return 100;
 
-        //    foreach (ApiFunction function in Enum.GetValues(typeof(ApiFunction)))
-        //    {
+                default:
+                    return 200;
+            }
+        }
 
-        //        //NOTE: when inside of this, CurrentContext.TestDirectory, the current context is still being built up!  So that directory is of the nunit.dll
-        //        //  I COULD use WorkingDirectory... but that doesn't seem as valid, could break if wanted to run tests in parallel
-        //        //var fileContents = ReadFile(function, id);
+        public int CountNonDefaultProperties(object obj)
+        {
+            // Let JsonConvert do the work of stripping out default values
+            var serialized = JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            {
+                DefaultValueHandling = DefaultValueHandling.Ignore
+            });
 
-        //        yield return new TestCaseData(function).SetName($"{function} samples");
-        //    }
-        //}
+            // Recurse into the json structure, which is much simpler than C# Object structure
+            var jObj = JObject.Parse(serialized);
+
+            return CountJTokenProperties(jObj);
+        }
+
+        private static int CountJTokenProperties(JToken token)
+        {
+            var sum = 0;
+
+            if (token.Type == JTokenType.Object)
+            {
+                foreach (var child in token.Value<JObject>())
+                {
+                    sum += CountJTokenProperties(child.Value);
+                }
+            }
+            else if (token.Type == JTokenType.Array)
+            {
+                foreach (var child in token.Value<JArray>())
+                {
+                    sum += CountJTokenProperties(child);
+                }
+            }
+            else
+            {
+                sum += 1;
+            }
+
+            return sum;
+        }
     }
 }
