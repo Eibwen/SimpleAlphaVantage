@@ -80,10 +80,25 @@ public string GenerateFunction(KeyValuePair<string, List<Parameter>> kvp)
 	var returnObject = isTechnicalIndicator
 				? "TechnicalIndicator"
 				: functionName;
+	
 	if (isTechnicalIndicator)
 	{
 		functionName = kvp.Key;
 	}
+
+	
+	var differentReturnType = new Dictionary<string, string>
+	{
+		{"MACDEXT", "idkyet"},
+		{"STOCH", "idkyet"},
+		{"STOCHF", "idkyet"},
+		{"STOCHRSI", "idkyet"}
+	};
+	if (differentReturnType.ContainsKey(kvp.Key))
+	{
+		returnObject = differentReturnType[kvp.Key];
+	}
+
 
 	return $@"        public async Task<{returnObject}> {functionName}({string.Join(", ", functionParameters)})
         {{

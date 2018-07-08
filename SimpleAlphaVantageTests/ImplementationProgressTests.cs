@@ -30,7 +30,10 @@ namespace SimpleAlphaVantageTests
             var classesToLookIn = new[]
             {
                 typeof(StockTimeSeriesData),
-                typeof(DigitalCryptoCurrencies)
+                typeof(DigitalCryptoCurrencies),
+                typeof(ForeignExchange),
+                typeof(TechnicalIndicators),
+                typeof(SectorPerformances)
             };
             var bindingFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
             return classesToLookIn.SelectMany(x => x.GetMethods(bindingFlags));
