@@ -74,6 +74,11 @@ namespace SimpleAlphaVantage.Utilities
             return JsonConvert.DeserializeObject<T>(json, JsonSettings);
         }
 
+        internal object DeserializeWithSettings(string json, Type type)
+        {
+            return JsonConvert.DeserializeObject(json, type, JsonSettings);
+        }
+
         private Uri AppendParams(Uri original, string toAppend)
         {
             UriBuilder baseUri = new UriBuilder(original);

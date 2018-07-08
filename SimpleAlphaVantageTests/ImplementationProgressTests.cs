@@ -17,12 +17,18 @@ namespace SimpleAlphaVantageTests
         public void All_enum_values_should_be_implemented(ApiFunction function)
         {
             //Arrange
-            var enumName = function.ToString();
-            var textInfo = new CultureInfo("en-US", false).TextInfo;
-            var enumNameTitleCase = textInfo.ToTitleCase(enumName.ToLowerInvariant()).Replace("_", "");
+            var enumNameTitleCase = EnumNamePascalCase(function);
 
             //Act & Assert
-            GetAllMethods.Value.Any(x => x.Name == enumName || x.Name == enumNameTitleCase).Should().BeTrue();
+            GetAllMethods.Value.Any(x => x.Name == function.ToString() || x.Name == enumNameTitleCase).Should().BeTrue();
+        }
+
+        public static string EnumNamePascalCase(ApiFunction function)
+        {
+            var textInfo = CultureInfo.InvariantCulture.TextInfo;
+
+            var enumNameTitleCase = textInfo.ToTitleCase(function.ToString().ToLowerInvariant()).Replace("_", "");
+            return enumNameTitleCase;
         }
 
         public static Lazy<IEnumerable<MethodInfo>> GetAllMethods => new Lazy<IEnumerable<MethodInfo>>(() =>
