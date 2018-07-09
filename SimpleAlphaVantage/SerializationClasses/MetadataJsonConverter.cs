@@ -75,6 +75,7 @@ namespace SimpleAlphaVantage.SerializationClasses
                             existingValue.MarketName = prop.Value.ToObject<string>();
                             break;
 
+                        //TODO should these go into AddTechnicalIndicatorParameter somehow?
                         case "Indicator":
                             existingValue.Indicator = prop.Value.ToObject<string>();
                             break;
@@ -83,6 +84,9 @@ namespace SimpleAlphaVantage.SerializationClasses
                             break;
                         case "Series Type":
                             existingValue.SeriesType = prop.Value.ToObject<SeriesType>();
+                            break;
+                        case "Volume Factor (vFactor)":
+                            existingValue.Volumefactor = prop.Value.ToObject<float>();
                             break;
 
                         default:
