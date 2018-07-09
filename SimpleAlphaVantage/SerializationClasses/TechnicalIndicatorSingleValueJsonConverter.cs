@@ -49,6 +49,11 @@ namespace SimpleAlphaVantage.SerializationClasses
                 return existingValue;
             }
 
+            if (thisObject.Count == 1 && thisObject.Properties().First().Name == "Information")
+            {
+                throw new Exception("Error from AlphaVantage: " + thisObject.Properties().First().Value);
+            }
+
             //TODO would I require error handling at this level??
             throw new Exception("Expected only 2 top-level properties on a response deserializing to BaseResposeData, but found not 2");
         }

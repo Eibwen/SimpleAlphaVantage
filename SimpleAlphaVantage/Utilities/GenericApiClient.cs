@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SimpleAlphaVantage.ResponseModels;
+using SimpleAlphaVantage.ResponseModels.TechnicalIndicatorModels;
 using SimpleAlphaVantage.SerializationClasses;
 
 namespace SimpleAlphaVantage.Utilities
@@ -29,6 +30,16 @@ namespace SimpleAlphaVantage.Utilities
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<AdjustedTimeSeriesData>());
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<DigitalCurrencySpotData>());
             JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<DigitalCurrencyFullData>());
+
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<MesaAdaptiveMovingAverage>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<Macd>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<StochasticSlow>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<StochasticFast>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<Aroon>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<BollingerBands>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<HilbertTransformSine>());
+            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<HilbertTransformPhasor>());
+
             JsonSettings.Converters.Add(new TechnicalIndicatorSingleValueJsonConverter());
             JsonSettings.Converters.Add(new ParenthesesCurrencyPropertyJsonConverter());
         }

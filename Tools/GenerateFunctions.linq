@@ -89,10 +89,17 @@ public string GenerateFunction(KeyValuePair<string, List<Parameter>> kvp)
 	
 	var differentReturnType = new Dictionary<string, string>
 	{
-		{"MACDEXT", "idkyet"},
-		{"STOCH", "idkyet"},
-		{"STOCHF", "idkyet"},
-		{"STOCHRSI", "idkyet"}
+		{"AROON", "TechnicalIndicator<Aroon>"},
+		{"BBANDS", "TechnicalIndicator<BollingerBands>"},
+		{"HT_PHASOR", "TechnicalIndicator<HilbertTransformPhasor>"},
+		{"HT_SINE", "TechnicalIndicator<HilbertTransformSine>"},
+		{"MACD", "TechnicalIndicator<Macd>"},
+		{"MACDEXT", "TechnicalIndicator<Macd>"},
+		{"MAMA", "TechnicalIndicator<MesaAdaptiveMovingAverage>"},
+		
+		{"STOCH", "TechnicalIndicator<StochasticSlow>"},
+		{"STOCHF", "TechnicalIndicator<StochasticFast>"},
+		{"STOCHRSI", "TechnicalIndicator<StochasticFast>"},
 	};
 	if (differentReturnType.ContainsKey(kvp.Key))
 	{

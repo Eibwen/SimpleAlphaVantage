@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using SimpleAlphaVantage.Extensions;
 using SimpleAlphaVantage.ResponseModels;
+using SimpleAlphaVantage.ResponseModels.TechnicalIndicatorModels;
 using SimpleAlphaVantage.Utilities;
 // ReSharper disable InconsistentNaming
 
@@ -92,9 +93,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> MAMA(string symbol, TimeInterval interval, SeriesType seriesType, float fastlimit = 0.01f, float slowlimit = 0.01f)
+        public async Task<TechnicalIndicator<MesaAdaptiveMovingAverage>> MAMA(string symbol, TimeInterval interval, SeriesType seriesType, float fastlimit = 0.01f, float slowlimit = 0.01f)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.MAMA), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<MesaAdaptiveMovingAverage>>(BuildUri(ApiFunction.MAMA), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -115,9 +116,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> MACD(string symbol, TimeInterval interval, SeriesType seriesType, uint fastperiod = 12, uint slowperiod = 26, uint signalperiod = 9)
+        public async Task<TechnicalIndicator<Macd>> MACD(string symbol, TimeInterval interval, SeriesType seriesType, uint fastperiod = 12, uint slowperiod = 26, uint signalperiod = 9)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.MACD), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<Macd>>(BuildUri(ApiFunction.MACD), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -128,9 +129,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> MACDEXT(string symbol, TimeInterval interval, SeriesType seriesType, uint fastperiod = 12, uint slowperiod = 26, uint signalperiod = 9, MovingAverageType fastmatype = MovingAverageType.Simple, MovingAverageType slowmatype = MovingAverageType.Simple, MovingAverageType signalmatype = MovingAverageType.Simple)
+        public async Task<TechnicalIndicator<Macd>> MACDEXT(string symbol, TimeInterval interval, SeriesType seriesType, uint fastperiod = 12, uint slowperiod = 26, uint signalperiod = 9, MovingAverageType fastmatype = MovingAverageType.Simple, MovingAverageType slowmatype = MovingAverageType.Simple, MovingAverageType signalmatype = MovingAverageType.Simple)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.MACDEXT), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<Macd>>(BuildUri(ApiFunction.MACDEXT), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -144,9 +145,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> STOCH(string symbol, TimeInterval interval, uint fastkperiod = 5, uint slowkperiod = 3, uint slowdperiod = 3, MovingAverageType slowkmatype = MovingAverageType.Simple, MovingAverageType slowdmatype = MovingAverageType.Simple)
+        public async Task<TechnicalIndicator<StochasticSlow>> STOCH(string symbol, TimeInterval interval, uint fastkperiod = 5, uint slowkperiod = 3, uint slowdperiod = 3, MovingAverageType slowkmatype = MovingAverageType.Simple, MovingAverageType slowdmatype = MovingAverageType.Simple)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.STOCH), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<StochasticSlow>>(BuildUri(ApiFunction.STOCH), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -158,9 +159,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> STOCHF(string symbol, TimeInterval interval, uint fastkperiod = 5, uint fastdperiod = 3, MovingAverageType fastdmatype = MovingAverageType.Simple)
+        public async Task<TechnicalIndicator<StochasticFast>> STOCHF(string symbol, TimeInterval interval, uint fastkperiod = 5, uint fastdperiod = 3, MovingAverageType fastdmatype = MovingAverageType.Simple)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.STOCHF), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<StochasticFast>>(BuildUri(ApiFunction.STOCHF), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -181,9 +182,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> STOCHRSI(string symbol, TimeInterval interval, uint timePeriod, SeriesType seriesType, uint fastkperiod = 5, uint fastdperiod = 3, MovingAverageType fastdmatype = MovingAverageType.Simple)
+        public async Task<TechnicalIndicator<StochasticFast>> STOCHRSI(string symbol, TimeInterval interval, uint timePeriod, SeriesType seriesType, uint fastkperiod = 5, uint fastdperiod = 3, MovingAverageType fastdmatype = MovingAverageType.Simple)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.STOCHRSI), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<StochasticFast>>(BuildUri(ApiFunction.STOCHRSI), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -314,9 +315,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> AROON(string symbol, TimeInterval interval, uint timePeriod)
+        public async Task<TechnicalIndicator<Aroon>> AROON(string symbol, TimeInterval interval, uint timePeriod)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.AROON), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<Aroon>>(BuildUri(ApiFunction.AROON), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -417,9 +418,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> BBANDS(string symbol, TimeInterval interval, uint timePeriod, SeriesType seriesType, uint nbdevup = 2, uint nbdevdn = 2, MovingAverageType matype = MovingAverageType.Simple)
+        public async Task<TechnicalIndicator<BollingerBands>> BBANDS(string symbol, TimeInterval interval, uint timePeriod, SeriesType seriesType, uint nbdevup = 2, uint nbdevdn = 2, MovingAverageType matype = MovingAverageType.Simple)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.BBANDS), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<BollingerBands>>(BuildUri(ApiFunction.BBANDS), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -531,9 +532,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> HT_SINE(string symbol, TimeInterval interval, SeriesType seriesType)
+        public async Task<TechnicalIndicator<HilbertTransformSine>> HT_SINE(string symbol, TimeInterval interval, SeriesType seriesType)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.HT_SINE), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<HilbertTransformSine>>(BuildUri(ApiFunction.HT_SINE), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},
@@ -571,9 +572,9 @@ namespace SimpleAlphaVantage.Api
             });
         }
 
-        public async Task<TechnicalIndicator> HT_PHASOR(string symbol, TimeInterval interval, SeriesType seriesType)
+        public async Task<TechnicalIndicator<HilbertTransformPhasor>> HT_PHASOR(string symbol, TimeInterval interval, SeriesType seriesType)
         {
-            return await ApiClient.SendGetAsync<TechnicalIndicator>(BuildUri(ApiFunction.HT_PHASOR), new Dictionary<string, string>
+            return await ApiClient.SendGetAsync<TechnicalIndicator<HilbertTransformPhasor>>(BuildUri(ApiFunction.HT_PHASOR), new Dictionary<string, string>
             {
                 {"symbol", symbol},
                 {"interval", interval.GetDescription()},

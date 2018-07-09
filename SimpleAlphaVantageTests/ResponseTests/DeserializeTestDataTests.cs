@@ -62,7 +62,6 @@ namespace SimpleAlphaVantageTests.ResponseTests
         ///
         /// Very complicated to build up everything dynamically with how I'm doing everything...
         /// </summary>
-        //[TestCaseSource(nameof(GetDeserializationData))]
         [Theory]
         public void When_deserializing_all_sample_files(ApiFunction function)
         {
@@ -97,12 +96,21 @@ namespace SimpleAlphaVantageTests.ResponseTests
 
                 nonDefaultProperties.Should().BeGreaterOrEqualTo(GetMinimumExpectedProperties(function));
 
-                if (!function.ToString().Contains("ADJUSTED"))
+                if (function == ApiFunction.STOCHRSI
+                    || function == ApiFunction.STOCHF
+                    || function == ApiFunction.AROON)
                 {
+                    // Very lenient case
+                    nonDefaultProperties.Should().BeGreaterOrEqualTo((int)(allPropertiesCount * 0.5), "seems like an excessive number of default property values, even for these functions");
+                }
+                else if (!function.ToString().Contains("ADJUSTED"))
+                {
+                    // Default case
                     nonDefaultProperties.Should().BeGreaterOrEqualTo(allPropertiesCount - 20, "seems like an excessive number of default property values");
                 }
                 else
                 {
+                    // Lenient case
                     nonDefaultProperties.Should().BeGreaterOrEqualTo((int)(allPropertiesCount * 0.7), "even though adjusted, seems like an excessive number of default property values");
                 }
             }
