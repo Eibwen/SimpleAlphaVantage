@@ -130,7 +130,7 @@ namespace SimpleAlphaVantage.Api
         /// <summary>
         /// The batch stock quotes API enables the querying of multiple stock quotes with a single API request, updated realtime. It may serve as a lightweight alternative to our core stock time series APIs above (which have richer content but are symbol-specific).
         ///
-        /// Given the specifications of our data provider(IEX), we currently only offer US stock quotes during US market hours through this API.If you would like to query international stocks, ETFs, and mutual funds traded on major global exchanges, please refer to our core stock time series APIs(Intraday, Daily, Daily Ajudsted, Weekly, Weekly Adjusted, Monthly, and Monthly Adjusted).
+        /// Given the specifications of our data provider(IEX), we currently only offer US stock quotes during US market hours through this API.If you would like to query international stocks, ETFs, and mutual funds traded on major global exchanges, please refer to our core stock time series APIs(Intraday, Daily, Daily Adjusted, Weekly, Weekly Adjusted, Monthly, and Monthly Adjusted).
         /// </summary>
         /// <param name="symbols"></param>
         /// <returns></returns>

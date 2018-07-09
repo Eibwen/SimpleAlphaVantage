@@ -91,7 +91,7 @@ namespace SimpleAlphaVantageTests
             urlString.Should().Be("https://whatever/query?datatype=json");
         }
 
-        public class TestRequest : IRequestParams
+        private class TestRequest : IRequestParams
         {
             public Dictionary<string, string> ToDictionary()
             {
@@ -119,7 +119,7 @@ namespace SimpleAlphaVantageTests
                 return await Task.FromResult(_mockResponse);
             }
 
-            public Uri RequestUri { get; set; }
+            public Uri RequestUri { get; private set; }
         }
     }
 }

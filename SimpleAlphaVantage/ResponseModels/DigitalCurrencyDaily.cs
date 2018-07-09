@@ -1,6 +1,6 @@
 ﻿namespace SimpleAlphaVantage.ResponseModels
 {
-    public class DigitalCurrencyDaily : BaseResposeData<DigitalCurrencyFullData>
+    public class DigitalCurrencyDaily : BaseResponseData<DigitalCurrencyFullData>
     {
     }
 }

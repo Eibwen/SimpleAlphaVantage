@@ -14,7 +14,7 @@ namespace SimpleAlphaVantageTests.ResponseTests
     [TestFixture]
     public class DeserializeTestDataTests
     {
-        public static string ReadFile(ApiFunction function, int id = 0)
+        private static string ReadFile(ApiFunction function, int id = 0)
         {
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, $@"ResponseTests\TestData\{function}.{id}.json");
             if (File.Exists(path))
@@ -140,7 +140,7 @@ namespace SimpleAlphaVantageTests.ResponseTests
             }
         }
 
-        public int CountProperties(object obj, bool includeDefaultValues)
+        private int CountProperties(object obj, bool includeDefaultValues)
         {
             // Let JsonConvert do the work of stripping out default values
             var serialized = JsonConvert.SerializeObject(obj, new JsonSerializerSettings

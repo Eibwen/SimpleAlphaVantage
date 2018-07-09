@@ -1,6 +1,6 @@
 ﻿namespace SimpleAlphaVantage.ResponseModels
 {
-    public class TimeSeriesDailyAdjusted : BaseResposeData<AdjustedTimeSeriesData>
+    public class TimeSeriesDailyAdjusted : BaseResponseData<AdjustedTimeSeriesData>
     {
         
     }

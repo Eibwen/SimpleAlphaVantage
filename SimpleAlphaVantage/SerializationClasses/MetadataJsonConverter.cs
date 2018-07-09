@@ -86,7 +86,7 @@ namespace SimpleAlphaVantage.SerializationClasses
                             existingValue.SeriesType = prop.Value.ToObject<SeriesType>();
                             break;
                         case "Volume Factor (vFactor)":
-                            existingValue.Volumefactor = prop.Value.ToObject<float>();
+                            existingValue.VolumeFactor = prop.Value.ToObject<float>();
                             break;
 
                         default:

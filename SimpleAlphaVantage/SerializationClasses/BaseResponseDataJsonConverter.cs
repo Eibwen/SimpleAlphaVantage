@@ -7,20 +7,20 @@ using SimpleAlphaVantage.ResponseModels;
 
 namespace SimpleAlphaVantage.SerializationClasses
 {
-    public class BaseResposeDataJsonConverter<T> : JsonConverter<BaseResposeData<T>>
+    public class BaseResponseDataJsonConverter<T> : JsonConverter<BaseResponseData<T>>
     {
         public override bool CanWrite => false;
 
-        public override void WriteJson(JsonWriter writer, BaseResposeData<T> value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, BaseResponseData<T> value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
 
-        public override BaseResposeData<T> ReadJson(JsonReader reader, Type objectType, BaseResposeData<T> existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override BaseResponseData<T> ReadJson(JsonReader reader, Type objectType, BaseResponseData<T> existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             if (!hasExistingValue)
             {
-                existingValue = (BaseResposeData<T>)Activator.CreateInstance(objectType);
+                existingValue = (BaseResponseData<T>)Activator.CreateInstance(objectType);
             }
 
             var thisObject = JObject.Load(reader);
@@ -44,7 +44,7 @@ namespace SimpleAlphaVantage.SerializationClasses
             }
 
             //TODO would I require error handling at this level??
-            throw new AlphaVantageException("Expected only 2 top-level properties on a response deserializing to BaseResposeData, but found not 2");
+            throw new AlphaVantageException("Expected only 2 top-level properties on a response deserializing to BaseResponseData, but found not 2");
         }
     }
 }

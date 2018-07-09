@@ -15,30 +15,30 @@ namespace SimpleAlphaVantage.Utilities
     {
         private readonly HttpClient _client = new HttpClient();
 
-        public GenericApiClient(Action<HttpClient> confgiureClient = null, bool strictDeserialization = true)
+        public GenericApiClient(Action<HttpClient> configureClient = null, bool strictDeserialization = true)
         {
-            confgiureClient?.Invoke(_client);
+            configureClient?.Invoke(_client);
 
-            //TODO well this makes this NOT generic... have this passed in, and for my library inherid from generic one
+            //TODO well this makes this NOT generic... have this passed in, and for my library inherit from generic one
             JsonSettings = new JsonSerializerSettings
             {
                 MissingMemberHandling = strictDeserialization ? MissingMemberHandling.Error : MissingMemberHandling.Ignore
             };
             JsonSettings.Converters.Add(new MetadataJsonConverter());
             //TODO do some sort of scan to find all of these:
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<TimeSeriesData>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<AdjustedTimeSeriesData>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<DigitalCurrencySpotData>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<DigitalCurrencyFullData>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<TimeSeriesData>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<AdjustedTimeSeriesData>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<DigitalCurrencySpotData>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<DigitalCurrencyFullData>());
 
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<MesaAdaptiveMovingAverage>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<Macd>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<StochasticSlow>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<StochasticFast>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<Aroon>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<BollingerBands>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<HilbertTransformSine>());
-            JsonSettings.Converters.Add(new BaseResposeDataJsonConverter<HilbertTransformPhasor>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<MesaAdaptiveMovingAverage>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<Macd>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<StochasticSlow>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<StochasticFast>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<Aroon>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<BollingerBands>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<HilbertTransformSine>());
+            JsonSettings.Converters.Add(new BaseResponseDataJsonConverter<HilbertTransformPhasor>());
 
             JsonSettings.Converters.Add(new TechnicalIndicatorSingleValueJsonConverter());
             JsonSettings.Converters.Add(new ParenthesesCurrencyPropertyJsonConverter());

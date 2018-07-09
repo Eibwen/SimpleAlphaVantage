@@ -1,10 +1,10 @@
 ﻿namespace SimpleAlphaVantage.ResponseModels
 {
-    public class TechnicalIndicator : BaseResposeData<decimal>
+    public class TechnicalIndicator : BaseResponseData<decimal>
     {
     }
 
-    public class TechnicalIndicator<T> : BaseResposeData<T>
+    public class TechnicalIndicator<T> : BaseResponseData<T>
     {
     }
 }

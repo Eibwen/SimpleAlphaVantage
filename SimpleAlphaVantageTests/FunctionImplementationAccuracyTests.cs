@@ -38,7 +38,7 @@ namespace SimpleAlphaVantageTests
                 //Assert
                 foreach (var method in methodsToCheck)
                 {
-                    //TODO bulid or find a library to invoke based on parameter names...
+                    //TODO build or find a library to invoke based on parameter names...
                     //method.Invoke(stockTimeSeriesData, )
 
                     var foundFunction = Regex.Match(mockHandler.RequestUri.ToString(), "function=(.+?)(&|$)");

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using SimpleAlphaVantage.ResponseModels;
@@ -8,7 +7,7 @@ using SimpleAlphaVantage.Utilities;
 namespace SimpleAlphaVantageTests.SerializationTests
 {
     [TestFixture]
-    public class BaseResposeDataTests
+    public class BaseResponseDataTests
     {
         [Test]
         public void When_deserializing_response_body()
