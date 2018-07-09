@@ -1,0 +1,9 @@
+language: csharp
+solution: SimpleAlphaVantage.sln
+dotnet: latest
+install:
+  - nuget restore SimpleAlphaVantage.sln
+  - nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
+script:
+  - mono ./testrunner/NUnit.Console.3.8.0/tools/nunit-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
+  
