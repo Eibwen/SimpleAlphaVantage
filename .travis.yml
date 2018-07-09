@@ -6,7 +6,8 @@ install:
   - dotnet restore
   #- nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
 script:
-  - dotnet build
+  #- dotnet build
   #- mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
-  - dotnet test
-  
+  - dotnet test SimpleAlphaVantageTests
+  #- dotnet pack SimpleAlphaVantage
+  - dotnet push *.nupkg
