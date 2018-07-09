@@ -3,9 +3,10 @@ solution: SimpleAlphaVantage.sln
 mono: none
 dotnet: 2.1
 install:
-  - nuget restore SimpleAlphaVantage.sln
-  - nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
+  - dotnet restore
+  #- nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
 script:
   - dotnet build
-  - mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
+  #- mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
+  - dotnet test
   
