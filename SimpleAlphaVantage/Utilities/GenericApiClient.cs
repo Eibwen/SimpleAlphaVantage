@@ -84,7 +84,7 @@ namespace SimpleAlphaVantage.Utilities
         {
             UriBuilder baseUri = new UriBuilder(original);
 
-            if (baseUri.Query != null && baseUri.Query.Length > 1)
+            if (baseUri.Query.Length > 1)
                 baseUri.Query = baseUri.Query.Substring(1) + "&" + toAppend;
             else
                 baseUri.Query = toAppend;

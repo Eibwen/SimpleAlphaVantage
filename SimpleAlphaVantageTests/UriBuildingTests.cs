@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -117,7 +116,7 @@ namespace SimpleAlphaVantageTests
             {
                 RequestUri = request.RequestUri;
 
-                return await Task.FromResult<HttpResponseMessage>(_mockResponse);
+                return await Task.FromResult(_mockResponse);
             }
 
             public Uri RequestUri { get; set; }

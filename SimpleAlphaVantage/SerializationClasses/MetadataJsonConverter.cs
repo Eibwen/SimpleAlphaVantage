@@ -15,7 +15,7 @@ namespace SimpleAlphaVantage.SerializationClasses
             throw new NotImplementedException("TODO find a way to not include this converter for serialization");
         }
 
-        private Regex technicalParamPattern = new Regex(@"^\d\.\d:");
+        private readonly Regex _technicalParamPattern = new Regex(@"^\d\.\d:");
         public override SparseMetadata ReadJson(JsonReader reader, Type objectType, SparseMetadata existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             if (!hasExistingValue)
@@ -29,7 +29,7 @@ namespace SimpleAlphaVantage.SerializationClasses
 
                 foreach (var prop in jObject)
                 {
-                    var match = technicalParamPattern.Match(prop.Key);
+                    var match = _technicalParamPattern.Match(prop.Key);
                     if (match.Success)
                     {
                         AddTechnicalIndicatorParameter(existingValue, prop);

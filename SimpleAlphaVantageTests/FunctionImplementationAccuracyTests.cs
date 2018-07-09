@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using FluentAssertions;
 using NUnit.Framework;
 using SimpleAlphaVantage.Api;
 using SimpleAlphaVantage.Utilities;

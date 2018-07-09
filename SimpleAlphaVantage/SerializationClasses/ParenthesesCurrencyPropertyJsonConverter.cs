@@ -28,17 +28,17 @@ namespace SimpleAlphaVantage.SerializationClasses
             return (ParenthesesCurrencyBase)jObject.ToObject(objectType);
         }
 
-        Regex renameProperty = new Regex(@"^(\da\. .+?) \([A-Z]{3,3}\)$");
+        private readonly Regex _renameProperty = new Regex(@"^(\da\. .+?) \([A-Z]{3,3}\)$");
         private JObject PreProcessPropertyNames(JObject obj)
         {
             var oldNames = obj.Properties()
                 .Select(x => x.Name)
-                .Where(x => renameProperty.IsMatch(x))
+                .Where(x => _renameProperty.IsMatch(x))
                 .ToList();
             foreach (var name in oldNames)
             {
                 var prop = obj.Property(name);
-                prop.Replace(new JProperty(renameProperty.Match(name).Groups[1].Value, prop.Value));
+                prop.Replace(new JProperty(_renameProperty.Match(name).Groups[1].Value, prop.Value));
             }
 
             return obj;
