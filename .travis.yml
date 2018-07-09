@@ -9,5 +9,5 @@ script:
   #- dotnet build
   #- mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
   - dotnet test SimpleAlphaVantageTests
-  - dotnet pack SimpleAlphaVantage
-  - dotnet push *.nupkg
+  - dotnet pack SimpleAlphaVantage -c Release
+  - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
