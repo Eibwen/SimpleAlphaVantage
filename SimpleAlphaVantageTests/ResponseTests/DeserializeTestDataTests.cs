@@ -89,10 +89,22 @@ namespace SimpleAlphaVantageTests.ResponseTests
 
                 //Assert
                 // count all the non-default property values, if deserialization failed, the values should be defaults
-                var nonDefaultProperties = CountNonDefaultProperties(result);
+                //TODO could also say number of default values should be BELOW a maximum (make sure one part of the model didn't stop working)
+                var nonDefaultProperties = CountProperties(result, false);
                 Console.WriteLine("Non-default property count: " + nonDefaultProperties);
+                var allPropertiesCount = CountProperties(result, true);
+                Console.WriteLine("Property count: " + allPropertiesCount);
 
                 nonDefaultProperties.Should().BeGreaterOrEqualTo(GetMinimumExpectedProperties(function));
+
+                if (!function.ToString().Contains("ADJUSTED"))
+                {
+                    nonDefaultProperties.Should().BeGreaterOrEqualTo(allPropertiesCount - 20, "seems like an excessive number of default property values");
+                }
+                else
+                {
+                    nonDefaultProperties.Should().BeGreaterOrEqualTo((int)(allPropertiesCount * 0.7), "even though adjusted, seems like an excessive number of default property values");
+                }
             }
 
             if (id == 0)
@@ -107,20 +119,24 @@ namespace SimpleAlphaVantageTests.ResponseTests
             {
                 case ApiFunction.CURRENCY_EXCHANGE_RATE:
                     return 5;
+                case ApiFunction.BATCH_STOCK_QUOTES:
+                    return 10;
+                case ApiFunction.HT_DCPHASE:
+                    return 75;
                 case ApiFunction.SECTOR:
                     return 100;
 
                 default:
-                    return 200;
+                    return 100;
             }
         }
 
-        public int CountNonDefaultProperties(object obj)
+        public int CountProperties(object obj, bool includeDefaultValues)
         {
             // Let JsonConvert do the work of stripping out default values
             var serialized = JsonConvert.SerializeObject(obj, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Ignore
+                DefaultValueHandling = includeDefaultValues ? DefaultValueHandling.Include : DefaultValueHandling.Ignore
             });
 
             // Recurse into the json structure, which is much simpler than C# Object structure

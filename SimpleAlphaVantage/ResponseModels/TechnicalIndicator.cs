@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
-
-namespace SimpleAlphaVantage.ResponseModels
+﻿namespace SimpleAlphaVantage.ResponseModels
 {
-    public class TechnicalIndicator
+    public class TechnicalIndicator : BaseResposeData<decimal>
     {
-        
     }
 }

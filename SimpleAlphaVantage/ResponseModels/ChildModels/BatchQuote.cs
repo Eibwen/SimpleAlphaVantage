@@ -10,7 +10,7 @@ namespace SimpleAlphaVantage.ResponseModels
         [JsonProperty("2. price")]
         public decimal Price { get; set; }
         [JsonProperty("3. volume")]
-        public long Volume { get; set; }
+        public string Volume { get; set; }
         [JsonProperty("4. timestamp")]
         public DateTime Timestamp { get; set; }
     }
