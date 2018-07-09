@@ -11,3 +11,4 @@ script:
   - dotnet test SimpleAlphaVantageTests
   - dotnet pack SimpleAlphaVantage -c Release
   - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
+  
