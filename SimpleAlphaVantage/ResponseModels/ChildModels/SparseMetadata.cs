@@ -10,7 +10,11 @@ namespace SimpleAlphaVantage.ResponseModels
     {
         public string Information { get; set; }
         public string Symbol { get; set; }
-        public DateTime? LastRefreshed { get; set; }
+        /// <summary>
+        /// Can't be <c>DateTime?</c> because sometimes the value is <c>2018-07-06 (end of day)</c>
+        /// Specifically ONLY for <c>DIGITAL_CURRENCY_*</c>...
+        /// </summary>
+        public string LastRefreshed { get; set; }
         public string Interval { get; set; }
         public string OutputSize { get; set; }
         public string Notes { get; set; }

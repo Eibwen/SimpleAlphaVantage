@@ -24,7 +24,7 @@ namespace SimpleAlphaVantageTests.SerializationTests
 
             materialized.Metadata.Information.Should().Be("Intraday (15min) prices and volumes");
             materialized.Metadata.Symbol.Should().Be("MSFT");
-            materialized.Metadata.LastRefreshed.Should().Be(new DateTime(2018, 7, 6, 16, 0, 0));
+            materialized.Metadata.LastRefreshed.Should().Be("2018-07-06 16:00:00");
             materialized.Metadata.Interval.Should().Be("15min");
             materialized.Metadata.OutputSize.Should().Be("Compact");
             materialized.Metadata.TimeZone.Should().Be("US/Eastern");

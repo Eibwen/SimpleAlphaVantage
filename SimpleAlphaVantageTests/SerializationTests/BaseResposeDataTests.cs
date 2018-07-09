@@ -25,7 +25,7 @@ namespace SimpleAlphaVantageTests.SerializationTests
 
             materialized.Metadata.Information.Should().Be("Daily Prices (open, high, low, close) and Volumes");
             materialized.Metadata.Symbol.Should().Be("MSFT");
-            materialized.Metadata.LastRefreshed.Should().Be(new DateTime(2018, 7, 6));
+            materialized.Metadata.LastRefreshed.Should().Be("2018-07-06");
             materialized.Metadata.Interval.Should().BeNull();
             materialized.Metadata.OutputSize.Should().Be("Compact");
             materialized.Metadata.TimeZone.Should().Be("US/Eastern");

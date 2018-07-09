@@ -98,7 +98,8 @@ namespace SimpleAlphaVantageTests.ResponseTests
 
                 if (function == ApiFunction.STOCHRSI
                     || function == ApiFunction.STOCHF
-                    || function == ApiFunction.AROON)
+                    || function == ApiFunction.AROON
+                    || function == ApiFunction.DIGITAL_CURRENCY_DAILY)
                 {
                     // Very lenient case
                     nonDefaultProperties.Should().BeGreaterOrEqualTo((int)(allPropertiesCount * 0.5), "seems like an excessive number of default property values, even for these functions");

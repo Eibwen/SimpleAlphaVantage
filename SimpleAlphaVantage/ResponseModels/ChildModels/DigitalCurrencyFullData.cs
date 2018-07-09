@@ -3,7 +3,7 @@
 
 namespace SimpleAlphaVantage.ResponseModels
 {
-    public class DigitalCurrencyFullData
+    public class DigitalCurrencyFullData : ParenthesesCurrencyBase
     {
         [JsonProperty("1a. open")]
         public decimal Open { get; set; }

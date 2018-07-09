@@ -47,7 +47,7 @@ namespace SimpleAlphaVantage.SerializationClasses
                             existingValue.Symbol = prop.Value.ToObject<string>();
                             break;
                         case "Last Refreshed":
-                            existingValue.LastRefreshed = prop.Value.ToObject<DateTime>(serializer);
+                            existingValue.LastRefreshed = prop.Value.ToObject<string>();
                             break;
                         case "Interval":
                             existingValue.Interval = prop.Value.ToObject<string>();
