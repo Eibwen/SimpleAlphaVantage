@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SimpleAlphaVantage.Exceptions;
 using SimpleAlphaVantage.ResponseModels;
 
 namespace SimpleAlphaVantage.SerializationClasses
@@ -43,7 +44,7 @@ namespace SimpleAlphaVantage.SerializationClasses
             }
 
             //TODO would I require error handling at this level??
-            throw new Exception("Expected only 2 top-level properties on a response deserializing to BaseResposeData, but found not 2");
+            throw new AlphaVantageException("Expected only 2 top-level properties on a response deserializing to BaseResposeData, but found not 2");
         }
     }
 }
