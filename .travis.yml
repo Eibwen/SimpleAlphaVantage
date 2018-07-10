@@ -2,6 +2,10 @@ language: csharp
 solution: SimpleAlphaVantage.sln
 mono: none
 dotnet: 2.1
+stages:
+  - name: after_failure
+    # require the branch name to be master (note for PRs this is the base branch name)
+    if: branch = master
 install:
   - dotnet restore
   #- nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
@@ -19,7 +23,3 @@ after_success:
   - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
 after_failure:
   - echo "OMG TESTING THIS!!!!"
-stages:
-  - name: after_failure
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: branch = master
