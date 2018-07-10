@@ -25,3 +25,22 @@ I was not totally happy with the Alpha Vantage clients I found for C#, and thoug
 
 ## License
 I am publishing this under GPL (meaning projects using this must be open-source as well) because there are other libraries out there, and I'd love to see the work of anyone using this.  If you did need a more restricted license feel free to contact me.
+
+
+## Sample
+
+#### Very basic Linqpad Example:
+```
+using SimpleAlphaVantage.Api;
+using SimpleAlphaVantage.Enums;
+
+async void Main()
+{
+	var AlphaVantageApiKey = Util.GetPassword("AlphaAdvantage Api Key");
+	var client = new StockTimeSeriesData(AlphaVantageApiKey);
+	
+	var results = await client.TimeSeriesIntraday("MSFT", IntradayInterval.HalfHour);
+	
+	results.Dump();
+}
+```

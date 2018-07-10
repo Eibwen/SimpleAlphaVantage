@@ -7,6 +7,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using SimpleAlphaVantage;
 using SimpleAlphaVantage.Api;
+using SimpleAlphaVantage.Enums;
 
 namespace SimpleAlphaVantageTests
 {

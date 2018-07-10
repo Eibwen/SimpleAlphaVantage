@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SimpleAlphaVantage.Enums;
 using SimpleAlphaVantage.ResponseModels;
 
-namespace SimpleAlphaVantage.SerializationClasses
+namespace SimpleAlphaVantage.Utilities.SerializationClasses
 {
     public class MetadataJsonConverter : JsonConverter<SparseMetadata>
     {

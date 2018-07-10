@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using SimpleAlphaVantage.Enums;
 using SimpleAlphaVantage.Extensions;
 using SimpleAlphaVantage.ResponseModels;
 using SimpleAlphaVantage.ResponseModels.TechnicalIndicatorModels;

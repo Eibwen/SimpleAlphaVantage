@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SimpleAlphaVantage.Enums;
 using SimpleAlphaVantage.ResponseModels;
 using SimpleAlphaVantage.Utilities;
 

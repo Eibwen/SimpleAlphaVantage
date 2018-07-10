@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleAlphaVantage
+namespace SimpleAlphaVantage.Enums
 {
     public enum DataFormat
     {

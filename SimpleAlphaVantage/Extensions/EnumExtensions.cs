@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace SimpleAlphaVantage.Extensions
 {
-    public static class EnumExtensions
+    internal static class EnumExtensions
     {
         public static string GetDescription(this Enum value)
         {

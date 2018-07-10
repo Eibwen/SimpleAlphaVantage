@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using SimpleAlphaVantage;
+using SimpleAlphaVantage.Enums;
 using SimpleAlphaVantage.ResponseModels;
 using SimpleAlphaVantage.Utilities;
 

@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using SimpleAlphaVantage.Exceptions;
 using SimpleAlphaVantage.ResponseModels;
 
-namespace SimpleAlphaVantage.SerializationClasses
+namespace SimpleAlphaVantage.Utilities.SerializationClasses
 {
     public class BaseResponseDataJsonConverter<T> : JsonConverter<BaseResponseData<T>>
     {

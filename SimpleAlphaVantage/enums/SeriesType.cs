@@ -1,4 +1,4 @@
-﻿namespace SimpleAlphaVantage
+﻿namespace SimpleAlphaVantage.Enums
 {
     public enum SeriesType
     {

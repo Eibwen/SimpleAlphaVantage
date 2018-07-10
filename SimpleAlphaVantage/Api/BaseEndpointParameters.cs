@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using SimpleAlphaVantage.Enums;
 using SimpleAlphaVantage.Utilities;
 
 namespace SimpleAlphaVantage.Api
