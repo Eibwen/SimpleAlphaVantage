@@ -2,13 +2,12 @@ language: csharp
 solution: SimpleAlphaVantage.sln
 mono: none
 dotnet: 2.1
-stages:
-  - name: after_failure
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: branch = master
+env:
+  - TEST_FILE_BASE=SimpleAlphaVantageTests/ResponseTests/TestData
 install:
   - dotnet restore
   #- nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
+  - mkdir -p $TEST_FILE_BASE && tar xf $TEST_FILE_BASE.tar.gz -C $TEST_FILE_BASE
 script:
   #- dotnet build
   #- mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
@@ -21,5 +20,4 @@ script:
   - dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID /p:PackageReleaseNotes=${TRAVIS_COMMIT:0:8} $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
 after_success:
   - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
-after_failure:
-  - echo "OMG TESTING THIS!!!!"
+  
