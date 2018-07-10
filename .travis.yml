@@ -11,11 +11,15 @@ script:
   - dotnet test SimpleAlphaVantageTests -c Release
   - dotnet pack SimpleAlphaVantage -c Release
   - echo $TRAVIS_COMMIT -- $TRAVIS_PULL_REQUEST_SHA -- $TRAVIS_COMMIT_RANGE -- $TRAVIS_BRANCH
-  - echo ${TRAVIS_COMMIT:0:8} -- ${TRAVIS_COMMIT:(-8)} -- `echo $TRAVIS_COMMIT | cut -c1-8`
-  - echo is master- $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
-  - echo is other- $([ "$TRAVIS_BRANCH" != "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
+  #- echo ${TRAVIS_COMMIT:0:8} -- end chars- ${TRAVIS_COMMIT:(-8)} -- `echo $TRAVIS_COMMIT | cut -c1-8`
+  #- echo no suffix if master- $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
   - echo SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID /p:PackageReleaseNotes=${TRAVIS_COMMIT:0:8} $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
   - dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID /p:PackageReleaseNotes=${TRAVIS_COMMIT:0:8} $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
 after_success:
   - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
-  
+after_failure:
+  - echo "OMG TESTING THIS!!!!"
+stages:
+  - name: after_failure
+    # require the branch name to be master (note for PRs this is the base branch name)
+    if: branch = master
