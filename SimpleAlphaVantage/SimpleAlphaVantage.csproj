@@ -6,7 +6,7 @@
     <PackageProjectUrl>https://github.com/Eibwen/SimpleAlphaVantage</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Eibwen/SimpleAlphaVantage</RepositoryUrl>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageTags>AlphaVantage client</PackageTags>
     <Copyright>2018</Copyright>
     <Description>Testing this $TRAVIS_JOB_ID$</Description>
