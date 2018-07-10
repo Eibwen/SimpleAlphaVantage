@@ -9,9 +9,10 @@ install:
   #- nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
   - mkdir -p $TEST_FILE_BASE && tar xf $TEST_FILE_BASE.tar.gz -C $TEST_FILE_BASE
 script:
-  - ls /home/travis/build/Eibwen/SimpleAlphaVantage/SimpleAlphaVantageTests/bin/Release/netcoreapp2.0
-  - ls /home/travis/build/Eibwen/SimpleAlphaVantage/SimpleAlphaVantageTests/bin/Release/netcoreapp2.0/SimpleAlphaVantageTests/ResponseTests
-  - ls /home/travis/build/Eibwen/SimpleAlphaVantage/SimpleAlphaVantageTests/bin/Release/netcoreapp2.0/SimpleAlphaVantageTests/ResponseTests/TestData
+  - pwd
+  - ls SimpleAlphaVantageTests/bin/Release/netcoreapp2.0
+  - ls SimpleAlphaVantageTests/bin/Release/netcoreapp2.0/SimpleAlphaVantageTests/ResponseTests
+  - ls SimpleAlphaVantageTests/bin/Release/netcoreapp2.0/SimpleAlphaVantageTests/ResponseTests/TestData
   #- dotnet build
   #- mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
   - dotnet test SimpleAlphaVantageTests -c Release
