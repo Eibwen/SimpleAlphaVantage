@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 
 namespace SimpleAlphaVantage.Exceptions
 {
+    [Serializable]
     public class AlphaVantageException : Exception
     {
         public AlphaVantageException()

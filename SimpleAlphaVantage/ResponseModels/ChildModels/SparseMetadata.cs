@@ -27,9 +27,9 @@ namespace SimpleAlphaVantage.ResponseModels
         public string MarketName { get; set; }
 
         public string Indicator { get; set; }
-        public int TimePeriod { get; set; }
-        public SeriesType SeriesType { get; set; }
-        public float VolumeFactor { get; set; }
+        public int? TimePeriod { get; set; }
+        public SeriesType? SeriesType { get; set; }
+        public float? VolumeFactor { get; set; }
 
         public Dictionary<string, string> TechnicalIndicatorParameters { get; set; }
     }

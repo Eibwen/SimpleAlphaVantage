@@ -1,0 +1,26 @@
+language: csharp
+solution: SimpleAlphaVantage.sln
+mono: none
+dotnet: 2.1
+
+before_install:
+  - SEMVER=1.0.1
+  - TEST_FILE_BASE=SimpleAlphaVantageTests/ResponseTests/TestData
+
+install:
+  - dotnet restore
+  - mkdir -p $TEST_FILE_BASE && tar xf $TEST_FILE_BASE.tar.gz -C $TEST_FILE_BASE
+
+script:
+  - dotnet test SimpleAlphaVantageTests -c Release
+  - echo $TRAVIS_COMMIT -- $TRAVIS_PULL_REQUEST_SHA -- $TRAVIS_COMMIT_RANGE -- $TRAVIS_BRANCH
+  - export RELEASE_NOTES=$(printf "$TRAVIS_COMMIT_MESSAGE\n\n${TRAVIS_COMMIT:0:8}")
+  - export PRERELEASE=$([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "-$TRAVIS_BRANCH")
+  - echo        SimpleAlphaVantage -c Release /p:PackageVersion=$SEMVER.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$RELEASE_NOTES"
+  - dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=$SEMVER.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$RELEASE_NOTES"
+
+after_success:
+  # Only push changes in master to nuget (instead of creating dozens of pre-release versions)
+  #   OR if a tag is present... TODO figure out how I'd want to use tags
+  #- [[ "$TRAVIS_BRANCH" == "master" || -n "$TRAVIS_TAG" ]] && dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
+  - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY

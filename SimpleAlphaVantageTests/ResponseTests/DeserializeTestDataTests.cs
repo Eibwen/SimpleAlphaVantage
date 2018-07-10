@@ -17,7 +17,11 @@ namespace SimpleAlphaVantageTests.ResponseTests
     {
         private static string ReadFile(ApiFunction function, int id = 0)
         {
-            var path = Path.Combine(TestContext.CurrentContext.TestDirectory, $@"ResponseTests\TestData\{function}.{id}.json");
+            var parentFolder = Path.Combine(TestContext.CurrentContext.TestDirectory, "ResponseTests");
+            var testDataFolder = Path.Combine(parentFolder, "TestData");
+            var path = Path.Combine(testDataFolder, $"{function}.{id}.json");
+
+            //var path = Path.Combine(TestContext.CurrentContext.TestDirectory, $@"ResponseTests\TestData\{function}.{id}.json");
             if (File.Exists(path))
             {
                 Console.WriteLine($"Reading file: {Path.GetFileName(path)}");

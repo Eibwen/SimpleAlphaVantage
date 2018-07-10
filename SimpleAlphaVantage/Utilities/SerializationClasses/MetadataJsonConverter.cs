@@ -99,7 +99,7 @@ namespace SimpleAlphaVantage.Utilities.SerializationClasses
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException("Expected StartObject token, but found: " + reader.TokenType);
             }
         }
 

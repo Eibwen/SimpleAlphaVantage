@@ -2,6 +2,9 @@
 
 I was not totally happy with the Alpha Vantage clients I found for C#, and thought building my own would be a fun task.
 
+[![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/SimpleAlphaVantage.svg?style=flat-square)](https://www.nuget.org/packages/SimpleAlphaVantage/)
+[![Build Status](https://travis-ci.com/Eibwen/SimpleAlphaVantage.svg?branch=master)](https://travis-ci.com/Eibwen/SimpleAlphaVantage)
+
 ### Goals
 * Clean and simple interface
 * Alpha Vantage's API documentation should nearly be documentation for this library
@@ -44,3 +47,38 @@ async void Main()
 	results.Dump();
 }
 ```
+#### Slightly more complex example
+```
+async void Main()
+{
+	var AlphaVantageApiKey = Util.GetPassword("AlphaAdvantage Api Key");
+	var client = new StockTimeSeriesData(AlphaVantageApiKey);
+	
+	var results = await client.TimeSeriesDailyAdjusted("MSFT");
+
+	//Get it out of KeyValuePair format and into an anonymous object
+	var data = results.Data.Select(x => new
+	{
+		Date = x.Key,
+		AdjustedClose = x.Value.AdjustedClose
+	});
+	var differences = data.Zip(data.Skip(1), (x, y) => new
+	{
+		Date = x.Date,
+		Growth = x.AdjustedClose - y.AdjustedClose,
+		Close = x.AdjustedClose
+	});
+	
+	results.Metadata.Dump();
+	
+	//Kinda hacky way to get the max valued record
+	differences.Where(x => x.Growth == differences.Max(m => m.Growth)).Dump($"Highest growth day in the last 100 days!");
+	differences.Dump("All daily deltas");
+}
+```
+
+
+## TODO
+
+- [ ] Add TraceWriter of some sort, want to be able to get the url for debugging purposes, and/or the full raw response somehow?  (other than an custom HttpHandler anyway)
+  - Could just add that to the output models base class??

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SimpleAlphaVantage.Exceptions;
@@ -43,8 +44,13 @@ namespace SimpleAlphaVantage.Utilities.SerializationClasses
                 return existingValue;
             }
 
+            if (thisObject.Count == 1 && thisObject.Properties().First().Name == "Information")
+            {
+                throw new AlphaVantageException("Error from AlphaVantage: " + thisObject.Properties().First().Value);
+            }
+
             //TODO would I require error handling at this level??
-            throw new AlphaVantageException("Expected only 2 top-level properties on a response deserializing to BaseResponseData, but found not 2");
+            throw new Exception("Expected only 2 top-level properties on a response deserializing to BaseResponseData, but found not 2");
         }
     }
 }

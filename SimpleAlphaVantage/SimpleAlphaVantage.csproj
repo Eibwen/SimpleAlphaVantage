@@ -3,13 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Greg Walker</Authors>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Eibwen/SimpleAlphaVantage</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Eibwen/SimpleAlphaVantage</RepositoryUrl>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageTags>AlphaVantage client</PackageTags>
+    <Copyright>2018</Copyright>
+    <Description></Description>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
