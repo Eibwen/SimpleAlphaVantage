@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SimpleAlphaVantage.Exceptions;
 using SimpleAlphaVantage.ResponseModels;
 
 namespace SimpleAlphaVantage.Utilities.SerializationClasses
@@ -51,7 +52,7 @@ namespace SimpleAlphaVantage.Utilities.SerializationClasses
 
             if (thisObject.Count == 1 && thisObject.Properties().First().Name == "Information")
             {
-                throw new Exception("Error from AlphaVantage: " + thisObject.Properties().First().Value);
+                throw new AlphaVantageException("Error from AlphaVantage: " + thisObject.Properties().First().Value);
             }
 
             //TODO would I require error handling at this level??
