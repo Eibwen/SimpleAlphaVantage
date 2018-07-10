@@ -9,7 +9,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageTags>AlphaVantage client</PackageTags>
     <Copyright>2018</Copyright>
-    <Description>Testing this $TRAVIS_JOB_ID$</Description>
+    <Description></Description>
     <Version>1.0.0.1</Version>
   </PropertyGroup>
 

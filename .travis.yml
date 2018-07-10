@@ -16,8 +16,9 @@ script:
   - echo $TRAVIS_COMMIT -- $TRAVIS_PULL_REQUEST_SHA -- $TRAVIS_COMMIT_RANGE -- $TRAVIS_BRANCH
   #- echo ${TRAVIS_COMMIT:0:8} -- end chars- ${TRAVIS_COMMIT:(-8)} -- `echo $TRAVIS_COMMIT | cut -c1-8`
   #- echo no suffix if master- $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
-  - echo SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID /p:PackageReleaseNotes=${TRAVIS_COMMIT:0:8} $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
-  - dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID /p:PackageReleaseNotes=${TRAVIS_COMMIT:0:8} $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
+  - export PRERELEASE=$([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "-$TRAVIS_BRANCH")
+  - echo        SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$TRAVIS_COMMIT_MESSAGE\n\n${TRAVIS_COMMIT:0:8}"
+  - dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$TRAVIS_COMMIT_MESSAGE\n\n${TRAVIS_COMMIT:0:8}"
 after_success:
   - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
   
