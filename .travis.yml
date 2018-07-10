@@ -12,7 +12,7 @@ script:
   #- dotnet build
   #- mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
   - dotnet test SimpleAlphaVantageTests -c Release
-  - dotnet pack SimpleAlphaVantage -c Release
+  #- dotnet pack SimpleAlphaVantage -c Release
   - echo $TRAVIS_COMMIT -- $TRAVIS_PULL_REQUEST_SHA -- $TRAVIS_COMMIT_RANGE -- $TRAVIS_BRANCH
   #- echo ${TRAVIS_COMMIT:0:8} -- end chars- ${TRAVIS_COMMIT:(-8)} -- `echo $TRAVIS_COMMIT | cut -c1-8`
   #- echo no suffix if master- $([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "--version-suffix \"$TRAVIS_BRANCH\"")
