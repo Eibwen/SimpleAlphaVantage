@@ -20,8 +20,8 @@ script:
   - export PRERELEASE=$([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "-$TRAVIS_BRANCH")
   - echo        SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$RELEASE_NOTES"
   - dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$RELEASE_NOTES"
+# Only push changes in master to nuget (instead of creating dozens of pre-release versions)
+#   OR if a tag is present... TODO figure out how I'd want to use tags
 after_success:
-  # Only push changes in master to nuget (instead of creating dozens of pre-release versions)
-  #   OR if a tag is present... TODO figure out how I'd want to use tags
   - [[ "$TRAVIS_BRANCH" == "master" || -n "$TRAVIS_TAG" ]] && dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
   
