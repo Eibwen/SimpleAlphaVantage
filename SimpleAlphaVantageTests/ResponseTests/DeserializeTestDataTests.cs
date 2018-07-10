@@ -28,6 +28,18 @@ namespace SimpleAlphaVantageTests.ResponseTests
         }
 
         [Test]
+        public void When_can_find_test_data()
+        {
+            //Arrange
+            throw new Exception($"NUNIT PATHS:\n{TestContext.CurrentContext.TestDirectory}\n{TestContext.CurrentContext.WorkDirectory}");
+
+            //Act
+
+            //Assert
+
+        }
+
+        [Test]
         public void When_manually_built_test()
         {
             //Arrange
