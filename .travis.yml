@@ -13,6 +13,6 @@ script:
   - echo $TRAVIS_COMMIT -- $TRAVIS_PULL_REQUEST_SHA -- $TRAVIS_COMMIT_RANGE -- $TRAVIS_BRANCH
   - echo ${TRAVIS_COMMIT:0:5} -- `expr substr ${TRAVIS_COMMIT} 0 5` -- `$TRAVIS_COMMIT | cut -c1-5`
   #- dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_COMMIT --version-suffix "ci-1234"
-deploy:
+after_success:
   - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
   
