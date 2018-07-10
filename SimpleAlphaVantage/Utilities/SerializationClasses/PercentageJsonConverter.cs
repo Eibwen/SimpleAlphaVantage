@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace SimpleAlphaVantage.SerializationClasses
+namespace SimpleAlphaVantage.Utilities.SerializationClasses
 {
     public class PercentageJsonConverter : JsonConverter<double>
     {

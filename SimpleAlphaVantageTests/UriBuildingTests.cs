@@ -7,6 +7,7 @@ using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using SimpleAlphaVantage;
+using SimpleAlphaVantage.Enums;
 using SimpleAlphaVantage.Utilities;
 
 namespace SimpleAlphaVantageTests

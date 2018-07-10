@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SimpleAlphaVantage.ResponseModels;
 using SimpleAlphaVantage.ResponseModels.TechnicalIndicatorModels;
-using SimpleAlphaVantage.SerializationClasses;
+using SimpleAlphaVantage.Utilities.SerializationClasses;
 
 namespace SimpleAlphaVantage.Utilities
 {

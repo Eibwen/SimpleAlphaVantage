@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimpleAlphaVantage.Enums;
 
 namespace SimpleAlphaVantage.ResponseModels
 {

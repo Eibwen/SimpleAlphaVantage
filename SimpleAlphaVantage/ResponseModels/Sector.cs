@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SimpleAlphaVantage.SerializationClasses;
+using SimpleAlphaVantage.Utilities.SerializationClasses;
 
 namespace SimpleAlphaVantage.ResponseModels
 {

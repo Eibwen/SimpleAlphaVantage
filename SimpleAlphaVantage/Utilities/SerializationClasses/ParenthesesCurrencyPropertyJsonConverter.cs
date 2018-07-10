@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SimpleAlphaVantage.ResponseModels;
 
-namespace SimpleAlphaVantage.SerializationClasses
+namespace SimpleAlphaVantage.Utilities.SerializationClasses
 {
     public class ParenthesesCurrencyPropertyJsonConverter : JsonConverter<ParenthesesCurrencyBase>
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SimpleAlphaVantage
+namespace SimpleAlphaVantage.Enums
 {
     public enum OutputType
     {
