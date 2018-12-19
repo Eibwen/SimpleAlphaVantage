@@ -2,7 +2,8 @@ language: csharp
 solution: SimpleAlphaVantage.sln
 mono: none
 dotnet: 2.1
-env:
+
+before_install:
   - SEMVER=1.0.1
   - TEST_FILE_BASE=SimpleAlphaVantageTests/ResponseTests/TestData
 
