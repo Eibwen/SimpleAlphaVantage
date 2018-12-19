@@ -4,13 +4,12 @@ mono: none
 dotnet: 2.1
 env:
   - TEST_FILE_BASE=SimpleAlphaVantageTests/ResponseTests/TestData
+
 install:
   - dotnet restore
-  #- nuget install NUnit.Console -Version 3.8.0 -OutputDirectory testrunner
   - mkdir -p $TEST_FILE_BASE && tar xf $TEST_FILE_BASE.tar.gz -C $TEST_FILE_BASE
+
 script:
-  #- dotnet build
-  #- mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./SimpleAlphaVantageTests/bin/Release/netstandard2.0/SimpleAlphaVantageTests.dll
   - dotnet test SimpleAlphaVantageTests -c Release
   #- dotnet pack SimpleAlphaVantage -c Release
   - echo $TRAVIS_COMMIT -- $TRAVIS_PULL_REQUEST_SHA -- $TRAVIS_COMMIT_RANGE -- $TRAVIS_BRANCH
@@ -20,9 +19,9 @@ script:
   - export PRERELEASE=$([ "$TRAVIS_BRANCH" == "master" ] && echo "" || echo "-$TRAVIS_BRANCH")
   - echo        SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$RELEASE_NOTES"
   - dotnet pack SimpleAlphaVantage -c Release /p:PackageVersion=1.0.1.$TRAVIS_BUILD_ID$PRERELEASE /p:PackageReleaseNotes="$RELEASE_NOTES"
+
 after_success:
   # Only push changes in master to nuget (instead of creating dozens of pre-release versions)
   #   OR if a tag is present... TODO figure out how I'd want to use tags
   #- [[ "$TRAVIS_BRANCH" == "master" || -n "$TRAVIS_TAG" ]] && dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
   - dotnet nuget push SimpleAlphaVantage/bin/Release/SimpleAlphaVantage.*.nupkg --api-key $NUGET_API_KEY
-  
