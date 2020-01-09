@@ -33,7 +33,7 @@ I am publishing this under GPL (meaning projects using this must be open-source 
 ## Sample
 
 #### Very basic Linqpad Example:
-```
+```c#
 using SimpleAlphaVantage.Api;
 using SimpleAlphaVantage.Enums;
 
@@ -48,7 +48,7 @@ async void Main()
 }
 ```
 #### Slightly more complex example
-```
+```c#
 async void Main()
 {
 	var AlphaVantageApiKey = Util.GetPassword("AlphaAdvantage Api Key");
