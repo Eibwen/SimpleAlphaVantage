@@ -2,7 +2,7 @@
 
 I was not totally happy with the Alpha Vantage clients I found for C#, and thought building my own would be a fun task.
 
-[![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/SimpleAlphaVantage.svg?style=flat-square)](https://www.nuget.org/packages/SimpleAlphaVantage/)
+[![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/SimpleAlphaVantage?style=flat)](https://www.nuget.org/packages/SimpleAlphaVantage/)
 [![Build Status](https://travis-ci.com/Eibwen/SimpleAlphaVantage.svg?branch=master)](https://travis-ci.com/Eibwen/SimpleAlphaVantage)
 
 ### Goals
