@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SimpleAlphaVantage.Exceptions;
 using SimpleAlphaVantage.ResponseModels;
 using SimpleAlphaVantage.ResponseModels.TechnicalIndicatorModels;
 using SimpleAlphaVantage.Utilities.SerializationClasses;
@@ -78,7 +79,23 @@ namespace SimpleAlphaVantage.Utilities
             var res = await _client.SendAsync(req);
             res.EnsureSuccessStatusCode();
 
-            return DeserializeWithSettings<TResponse>(await res.Content.ReadAsStringAsync());
+            var resBody = await res.Content.ReadAsStringAsync();
+
+            if (resBody.Contains("\"Error Message\""))
+            {
+                var error = DeserializeWithSettings<ErrorResponse>(resBody);
+
+                throw new AlphaVantageException(error.ErrorMessage);
+            }
+
+            try
+            {
+                return DeserializeWithSettings<TResponse>(resBody);
+            }
+            catch (Exception ex)
+            {
+                throw new DeserializationException("Failure deserializing response", resBody, ex);
+            }
         }
 
         internal T DeserializeWithSettings<T>(string json)
