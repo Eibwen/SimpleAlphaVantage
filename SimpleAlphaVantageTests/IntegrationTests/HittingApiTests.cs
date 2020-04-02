@@ -9,6 +9,7 @@ namespace SimpleAlphaVantageTests.IntegrationTests
     [TestFixture]
     public class HittingApiTests
     {
+        [Explicit]
         [TestCase("FZFXX**")]
         public async Task When_(string symbol)
         {
