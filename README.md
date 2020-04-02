@@ -32,12 +32,12 @@ I am publishing this under GPL (meaning projects using this must be open-source 
 
 ## Sample
 
-#### Very basic Linqpad Example:
+#### Very basic [LinqPad](https://www.linqpad.net/) Example:
 ```
 using SimpleAlphaVantage.Api;
 using SimpleAlphaVantage.Enums;
 
-async void Main()
+async Task Main()
 {
 	var AlphaVantageApiKey = Util.GetPassword("AlphaAdvantage Api Key");
 	var client = new StockTimeSeriesData(AlphaVantageApiKey);
@@ -47,9 +47,9 @@ async void Main()
 	results.Dump();
 }
 ```
-#### Slightly more complex example
+#### Slightly more complex example (still written for [LinqPad](https://www.linqpad.net/))
 ```
-async void Main()
+async Task Main()
 {
 	var AlphaVantageApiKey = Util.GetPassword("AlphaAdvantage Api Key");
 	var client = new StockTimeSeriesData(AlphaVantageApiKey);
