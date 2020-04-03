@@ -1,3 +1,10 @@
+# Note
+
+I currently lost access to my nuget account, so cannot make updates to that at the moment.  Trying to get that resolved (tried recovery, but recovery was another @outlook address which I also lost access to), but who knows...
+
+
+
+
 # Simple Alpha Vantage client
 
 I was not totally happy with the Alpha Vantage clients I found for C#, and thought building my own would be a fun task.
